@@ -32,6 +32,9 @@ pipeline:
                     tags:
                       - latest
                     dockerfile: Dockerfile
+        delegateSelectors:
+          - windows-amd64
+          - docker-delegate
   properties:
     ci:
       codebase:
