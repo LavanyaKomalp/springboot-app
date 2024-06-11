@@ -4,11 +4,6 @@ pipeline:
   projectIdentifier: cicd
   orgIdentifier: default
   tags: {}
-  properties:
-    ci:
-      codebase:
-        connectorRef: githubconnector
-        build: <+input>
   stages:
     - stage:
         name: build
@@ -37,3 +32,8 @@ pipeline:
                     tags:
                       - latest
                     dockerfile: Dockerfile
+  properties:
+    ci:
+      codebase:
+        connectorRef: githubconnector
+        build: <+input>
