@@ -1,0 +1,39 @@
+pipeline:
+  name: harnesscicd
+  identifier: harnesscicd
+  projectIdentifier: test
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: gitconnector
+        build: <+input>
+  stages:
+    - stage:
+        name: build-stage
+        identifier: buildstage
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          platform:
+            os: Windows
+            arch: Amd64
+          runtime:
+            type: Docker
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: BuildAndPushECR
+                  name: BuildAndPushECR_1
+                  identifier: BuildAndPushECR_1
+                  spec:
+                    connectorRef: aws_connector
+                    region: us-west-2
+                    account: "954503069243"
+                    imageName: spring
+                    tags:
+                      - image1
+                    target: public.ecr.aws/g9y3r8l4/harness/springboot
