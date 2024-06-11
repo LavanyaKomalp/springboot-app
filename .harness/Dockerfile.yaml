@@ -1,0 +1,5 @@
+service:
+  name: Dockerfile
+  identifier: Dockerfile
+  orgIdentifier: default
+  projectIdentifier: cicd
