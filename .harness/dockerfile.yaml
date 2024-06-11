@@ -1,0 +1,5 @@
+service:
+  name: dockerfile
+  identifier: dockerfile
+  orgIdentifier: default
+  projectIdentifier: test
