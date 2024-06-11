@@ -1,0 +1,42 @@
+pipeline:
+  name: harnesspipeline
+  identifier: harnesspipeline
+  projectIdentifier: cicd
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: githubconnector
+        build: <+input>
+  stages:
+    - stage:
+        name: build
+        identifier: build
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          platform:
+            os: Windows
+            arch: Amd64
+          runtime:
+            type: Docker
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: BuildAndPushECR
+                  name: BuildAndPushECR_1
+                  identifier: BuildAndPushECR_1
+                  spec:
+                    connectorRef: awsconnector
+                    region: us-east-2
+                    account: "954503069243"
+                    imageName: image1
+                    tags:
+                      - latest
+                    dockerfile: Dockerfile
+        delegateSelectors:
+          - windows-amd64
+          - docker-delegate
