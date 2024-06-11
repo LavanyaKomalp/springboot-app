@@ -11,8 +11,8 @@ pipeline:
         build: <+input>
   stages:
     - stage:
-        name: build-stage
-        identifier: buildstage
+        name: Build-stage
+        identifier: Buildstage
         description: ""
         type: CI
         spec:
@@ -31,9 +31,12 @@ pipeline:
                   identifier: BuildAndPushECR_1
                   spec:
                     connectorRef: aws_connector
-                    region: us-west-2
+                    region: us-east-2
                     account: "954503069243"
-                    imageName: spring
+                    imageName: image1
                     tags:
-                      - image1
-                    target: public.ecr.aws/g9y3r8l4/harness/springboot
+                      - latest
+                    dockerfile: Dockerfile
+        delegateSelectors:
+          - docker-delegate
+          - windows-amd64
